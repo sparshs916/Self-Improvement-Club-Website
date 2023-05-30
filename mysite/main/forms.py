@@ -6,7 +6,7 @@ class CreateNewList(forms.Form):
     check = forms.BooleanField(required=False)
 
 class CreateNewPost(forms.Form):
-    textfield = forms.CharField(label="textfield", widget=forms.Textarea(attrs={'rows': 5, 'cols': 50}))
+    textfield = forms.CharField(label="textfield", widget=forms.Textarea(attrs={'rows': 5, 'cols': 90, "style": "resize: none"}))
 
 
  

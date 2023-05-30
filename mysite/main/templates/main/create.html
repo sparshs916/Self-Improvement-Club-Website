@@ -1,25 +1,13 @@
-{% extends "main/base.html" %}
 
-{% block title %}
-<h1> Create New Post</h1>
-{% endblock %}
 
 {% block content %}
-<h3>Create a new social media post
-</h3>
-<form method="post" action="/create/" class="form-group">
-    {%csrf_token%}
-    {{form.textfield}}
-    <div class="input-group mb-3">
-        
-        <div class="input-group-prepend">
+<div class="form-container">
+    <form method="post" action="/create/" class="form-group">
+        {%csrf_token%}
+        <div class="input-group">
+            {{ form.textfield }}
             <button type="submit", name="save" class="btn btn-success">Create New Post</button>
         </div>
-        
-    </div>
-</form>
-
-<!-- New section to display posts -->
-
-
+    </form>
+</div>
 {% endblock %}

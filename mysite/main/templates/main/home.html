@@ -1,5 +1,4 @@
 {% extends "main/base.html" %}
-
 {% block title %}
 <h1> Home</h1>
 {% endblock %}
@@ -9,29 +8,44 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Twitter-Like Feed</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+    {%if not user.is_authenticated%}
+    <p>New User? Create an account
+    <a class="btn btn-primary btn-sm" href="/register" role="button"> here</a></p>
+    {%else%}
+    
     <div class="container mt-4">
+        {% include "main/create.html" %}
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Twitter-Like Feed</h3>
+                <h3 class="card-title">Your Feed</h3>
             </div>
+           
             <ul class="list-group list-group-flush">
-                {% for tweet in tweets %}
+                {% for post in posts %}
                 <li class="list-group-item">
-                    <h5>{{ tweet.user }}</h5>
-                    <p>{{ tweet.text }}</p>
-                    <small class="text-muted">{{ tweet.created_at }}</small>
+                                    <img style="
+                                    display:inline
+                                    width:100px;
+                                    height:100px;
+                                    border-radius: 50%;
+                                    " src="{{ profile.profileImage.url}}" alt="{{ user.username }}'s profile picture" class="img-thumbnail">
+                       
+-                    <h5>{{ post.user.username }}</h5>
+                    <p>{{ post.textfield }}</p>
+                    <small class="text-muted">{{post.dateCreated}}  {{post.created_at }}</small> 
                 </li>
+                <hr class="mt-2 mb-3"/>
                 {% empty %}
                 <li class="list-group-item">No tweets yet.</li>
                 {% endfor %}
+                
             </ul>
         </div>
     </div>
 </body>
 </html>
-
+{%endif%}
 {% endblock %}
